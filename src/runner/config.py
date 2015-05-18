@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 
-from . import utils
+from runner import utils
 
 settings = utils.Config()
 
