@@ -24,7 +24,7 @@
     Running point of the runner skeleton game
 """
 
-from cocos import director, scene, layer, sprite
+from cocos import director, scene, layer
 
 from runner.config import settings
 from runner.sprite import Character
@@ -38,7 +38,6 @@ class PointsLayer(layer.Layer):
 
     def __init__(self):
         super(PointsLayer, self).__init__()
-        self.__coin = sprite.Sprite('images/coin.png')
 
     def on_grab_coin(self):
         print("grab_coin!")
