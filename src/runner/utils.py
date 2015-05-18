@@ -20,8 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""
+    Package for utils classes and functions
+"""
+
 
 class Config(dict):
+    """
+    Dictionary extension that eases the direct attribute setting/getting
+    """
     def __getattr__(self, item):
         return self.get(item, None)
 
