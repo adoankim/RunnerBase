@@ -1,0 +1,4 @@
+cocos2d==0.6.3
+ipython==3.1.0
+pyglet==1.2.2
+six==1.9.0
