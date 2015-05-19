@@ -20,8 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import os
 import pyglet
 
 # adding assets path to the pyglet ressource manager
-pyglet.resource.path.append('../assets/')
+assets_abspath = unicode(os.path.join(os.path.dirname(__file__), '..', '..', 'assets'))
+pyglet.resource.path.append(assets_abspath)
 pyglet.resource.reindex()
