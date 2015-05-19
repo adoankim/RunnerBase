@@ -98,9 +98,11 @@ class Character(CollidableSprite, event.EventDispatcher):
         if self.jump_timer <= 0 and self.key_handler[key.SPACE]:
             self.jump_timer = 1
             self.do(ColliderJumpTo(self.position, height=100, duration=1))
+            self.dispatch_event('on_jump')
 
         self.jump_timer -= dt
         self.check_self_colliding()
 
-# Announces that the player can fire on_grab_coin events
+# Announces that the player can fire listed below events
 Character.register_event_type('on_grab_coin')
+Character.register_event_type('on_jump')

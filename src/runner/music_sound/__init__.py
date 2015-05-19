@@ -24,8 +24,43 @@
     Utils for music and sound effects management
 """
 
+import pyglet
+
+from runner.config import settings
+
+pyglet.options['audio'] = ('openal', 'silent')
+
+
+class SFXManager:
+    """
+        It manages Sound fx of the game
+    """
+    def __init__(self):
+        self.sounds = {
+            'jump': self.__load_static_sound('sounds/Jump.wav'),
+            'coin': self.__load_static_sound('sounds/Coin.wav')
+        }
+
+    @staticmethod
+    def __load_static_sound(path):
+        sound_media = pyglet.media.load(settings.get_assets(path))
+        return pyglet.media.StaticSource(sound_media)
+
+    def play(self, name):
+        if name in self.sounds:
+            self.sounds[name].play().volume = settings.default_sound_volume
+
 
 class SoundListener:
+    """
+        Class handler that plays the sound registered for the given events
+    """
+    sfx_manager = SFXManager()
 
     def on_grab_coin(self):
-        print("coin noise")
+        self.sfx_manager.play('coin')
+
+    def on_jump(self):
+        self.sfx_manager.play('jump')
+
+
