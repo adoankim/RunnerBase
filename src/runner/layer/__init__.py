@@ -1,4 +1,4 @@
-from cocos import director, scene, layer, text, actions
+from cocos import director, scene, layer, text, actions, sprite
 
 from runner.config import settings
 from runner.sprite import Character
@@ -45,6 +45,10 @@ class EntitiesLayer(layer.ColorLayer):
         self.character.position = 40, 130
         self.character.cshape.center = self.character.position
         self.coin_spawner = CoinSpawner(0.4, 130, 270)
+
+        ground = sprite.Sprite('images/ground.png')
+        ground.position = 300, 50
+        self.add(ground)
         self.add(self.coin_spawner, name="coin_spawner")
         self.add(self.character, name="character")
 

@@ -106,3 +106,4 @@ class Character(CollidableSprite, event.EventDispatcher):
 # Announces that the player can fire listed below events
 Character.register_event_type('on_grab_coin')
 Character.register_event_type('on_jump')
+
