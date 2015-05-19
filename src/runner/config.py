@@ -26,12 +26,12 @@ from runner import utils
 settings = utils.Config()
 
 # Window settings
-settings.win_width = 200
-settings.win_height = 100
+settings.win_width = 600
+settings.win_height = 300
 settings.win_size = (settings.win_width, settings.win_height)
 settings.win_half_width = settings.win_width//2
 settings.win_half_height = settings.win_height//2
 settings.win_half_size = (settings.win_half_width, settings.win_half_height)
 
 # Collider settings
-settings.cell_size = 150
+settings.cell_size = 300
