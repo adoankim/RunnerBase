@@ -1,4 +1,4 @@
-from cocos import director, scene, layer
+from cocos import director, scene, layer, text, actions
 
 from runner.config import settings
 from runner.sprite import Character
@@ -11,10 +11,22 @@ class PointsLayer(layer.Layer):
    """
 
     def __init__(self):
+        """
+            Initializes de points layer.
+            It creates a label that holds the text points value shown on the screen.
+            Also creates the scale animation fired each time the on_grab_coin is triggered.
+        """
         super(PointsLayer, self).__init__()
+        self.points_label = text.Label(text="0", font_size=8)
+        self.add(self.points_label)
+        self.points_label.position = 185, 80
+        self.points = 0
+        self.point_action = actions.ScaleTo(1.5, 0.5) + actions.ScaleTo(1, 0.5)
 
     def on_grab_coin(self):
-        print("grab_coin!")
+        self.points += 1
+        self.points_label.do(action=self.point_action)
+        self.points_label.element.text = "%d" % self.points
 
 
 class EntitiesLayer(layer.Layer):
@@ -33,7 +45,6 @@ class EntitiesLayer(layer.Layer):
         self.character.position = 10, 40
         self.character.cshape.center = self.character.position
         self.coin_spawner = CoinSpawner(0.2, 40, 90)
-
         self.add(self.coin_spawner, name="coin_spawner")
         self.add(self.character, name="character")
 
