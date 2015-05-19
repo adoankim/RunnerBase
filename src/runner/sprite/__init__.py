@@ -96,8 +96,8 @@ class Character(CollidableSprite, event.EventDispatcher):
         Handles the jump action of the player and performs the collision checking for each frame
         """
         if self.jump_timer <= 0 and self.key_handler[key.SPACE]:
-            self.jump_timer = 1.2
-            self.do(ColliderJumpTo(self.position, height=40, duration=1.2))
+            self.jump_timer = 1
+            self.do(ColliderJumpTo(self.position, height=100, duration=1))
 
         self.jump_timer -= dt
         self.check_self_colliding()

@@ -49,7 +49,7 @@ class CoinSpawner(cocosnode.CocosNode):
         """
         super(CoinSpawner, self).__init__()
         self.ymax, self.ymin = ymax, ymin
-        self.x_start = settings.win_width - 10
+        self.x_start = settings.win_width - 45
         self.gen_rate = gen_rate
         self.__spawn_coins(0)
         self.schedule_interval(self.__spawn_coins, 1)
@@ -71,7 +71,7 @@ class CoinSpawner(cocosnode.CocosNode):
         coin.do(ColliderMoveTo((-10, pos[1]), duration=2))
         wrapper = cocosnode.CocosNode()
         wrapper.add(coin, name="coin")
-        jumping = actions.MoveBy((0, 2), duration=0.1)
+        jumping = actions.MoveBy((0, 10), duration=0.1)
         wrapper.do(actions.Repeat(jumping + actions.Reverse(jumping)))
         self.add(wrapper)
 
