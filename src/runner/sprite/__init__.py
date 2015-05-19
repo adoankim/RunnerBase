@@ -88,7 +88,8 @@ class Character(CollidableSprite, event.EventDispatcher):
         When the player collides with a coin, he grabs it!
         """
         if kwargs['target_type'] == Coin.COLLISION_NAME:
-            print("grab coin")
+            print("player grabs a coin")
+            self.dispatch_event('on_grab_coin')
 
     def __update__(self, dt):
         """
