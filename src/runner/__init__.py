@@ -34,7 +34,7 @@ import pyglet
 from cocos import director, scene
 from runner.config import settings
 from runner.layer import PointsLayer, EntitiesLayer
-from runner.music_sound import SoundListener
+from runner.music_sound import SoundListener, BackgroundMusicManager
 
 
 def init_game():
@@ -52,6 +52,9 @@ def init_game():
 
     director.director.init(width=settings.win_width, height=settings.win_height)
     main_scene = scene.Scene()
+
+    bg_music_man = BackgroundMusicManager(settings.music['default'])
+    bg_music_man.start()
 
     points_layer = PointsLayer()
     entities_layer = EntitiesLayer()

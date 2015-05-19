@@ -31,14 +31,25 @@ from runner.config import settings
 pyglet.options['audio'] = ('openal', 'silent')
 
 
+class BackgroundMusicManager:
+    def __init__(self, song_path):
+        music = pyglet.media.load(settings.get_assets(song_path))
+        self.player = pyglet.media.Player()
+        self.player.queue(music)
+        self.player.volume = 0.2
+
+    def start(self):
+        self.player.play()
+
+
 class SFXManager:
     """
         It manages Sound fx of the game
     """
     def __init__(self):
         self.sounds = {
-            'jump': self.__load_static_sound('sounds/Jump.wav'),
-            'coin': self.__load_static_sound('sounds/Coin.wav')
+            'jump': self.__load_static_sound(settings.sounds['jump']),
+            'coin': self.__load_static_sound(settings.sounds['coin'])
         }
 
     @staticmethod
