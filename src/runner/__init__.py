@@ -20,10 +20,43 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
-import pyglet
+"""
+ It exposes the game running point
+"""
 
-# adding assets path to the pyglet ressource manager
-assets_abspath = unicode(os.path.join(os.path.dirname(__file__), '..', '..', 'assets'))
-pyglet.resource.path.append(assets_abspath)
-pyglet.resource.reindex()
+import os
+import platform
+# Windows "pyglet Context sharing" problem workaround
+if platform.system() == "Windows":
+    os.environ["PYGLET_SHADOW_WINDOW"] = "0"
+
+import pyglet
+from cocos import director, scene
+from runner.config import settings
+from runner.layer import PointsLayer, EntitiesLayer
+
+
+def init_game():
+    """
+    Public function that initialize the entry point of the game
+
+    Responsibilities:
+        director initialization based on config settings, scene and layers building
+    """
+
+    # adding assets path to the pyglet ressource manager
+    assets_abspath = unicode(os.path.join(os.path.dirname(__file__), '..', '..', 'assets'))
+    pyglet.resource.path.append(assets_abspath)
+    pyglet.resource.reindex()
+
+    director.director.init(width=settings.win_width, height=settings.win_height)
+    main_scene = scene.Scene()
+
+    points_layer = PointsLayer()
+    entities_layer = EntitiesLayer()
+    entities_layer.set_player_events_listener(points_layer)
+
+    main_scene.add(entities_layer, z=0)
+    main_scene.add(points_layer, z=1, name='points_layer')
+
+    director.director.run(main_scene)

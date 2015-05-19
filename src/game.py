@@ -21,70 +21,9 @@
 # SOFTWARE.
 
 """
-    Running point of the runner skeleton game
+    Entry point for the runner skeleton game
 """
-
-from cocos import director, scene, layer
-
-from runner.config import settings
-from runner.sprite import Character
-from runner.spawner import CoinSpawner
-
-
-class PointsLayer(layer.Layer):
-    """
-    Layer class that handles the grab_coin_action triggered by the player
-   """
-
-    def __init__(self):
-        super(PointsLayer, self).__init__()
-
-    def on_grab_coin(self):
-        print("grab_coin!")
-
-
-class EntitiesLayer(layer.Layer):
-    """
-    Layer class that manages the game entities building and show them on the scene
-   """
-    def __init__(self):
-        """
-        Creates the layer and its entities.
-
-        Responsibilities:
-            Build and configure the character sprite and coin spawner, then put them into the scene
-        """
-        super(EntitiesLayer, self).__init__()
-        self.character = Character()
-        self.character.position = 10, 40
-        self.character.cshape.center = self.character.position
-        self.coin_spawner = CoinSpawner(0.2, 40, 90)
-
-        self.add(self.coin_spawner, name="coin_spawner")
-        self.add(self.character, name="character")
-
-    def set_player_events_listener(self, listener):
-        self.character.push_handlers(listener)
-
-
-def init_game():
-    """
-    Public function that initialize the entry point of the game
-
-    Responsibilities:
-        director initialization based on config settings, scene and layers building
-    """
-    director.director.init(width=settings.win_width, height=settings.win_height)
-    main_scene = scene.Scene()
-
-    points_layer = PointsLayer()
-    entities_layer = EntitiesLayer()
-    entities_layer.set_player_events_listener(points_layer)
-
-    main_scene.add(entities_layer, z=0)
-    main_scene.add(points_layer, z=1, name='points_layer')
-
-    director.director.run(main_scene)
+import runner
 
 if __name__ == '__main__':
-    init_game()
+    runner.init_game()
