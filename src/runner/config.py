@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
+import os
 from runner import utils
 
 settings = utils.Config()
@@ -35,3 +35,10 @@ settings.win_half_size = (settings.win_half_width, settings.win_half_height)
 
 # Collider settings
 settings.cell_size = 300
+
+# Assets
+settings.assets_abspath = os.path.join(os.path.dirname(__file__), '..', '..', 'assets')
+settings.get_assets = lambda relative: os.path.join(settings.assets_abspath, relative)
+
+# Music & Sound
+settings.default_sound_volume = 1.5
