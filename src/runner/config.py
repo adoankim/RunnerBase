@@ -42,3 +42,11 @@ settings.get_assets = lambda relative: os.path.join(settings.assets_abspath, rel
 
 # Music & Sound
 settings.default_sound_volume = 1.5
+
+settings.music = dict()
+settings.music['reformat'] = 'music/Reformat.wav'
+settings.music['default'] = settings.music['reformat']
+
+settings.sounds = dict()
+settings.sounds['coin'] = 'sounds/Coin.wav'
+settings.sounds['jump'] = 'sounds/Jump.wav'
