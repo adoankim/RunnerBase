@@ -46,7 +46,7 @@ def init_game():
     """
 
     # adding assets path to the pyglet ressource manager
-    assets_abspath = unicode(os.path.join(os.path.dirname(__file__), '..', '..', 'assets'))
+    assets_abspath = os.path.join(os.path.dirname(__file__), '..', '..', 'assets')
     pyglet.resource.path.append(assets_abspath)
     pyglet.resource.reindex()
 
